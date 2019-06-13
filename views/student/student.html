@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>学生信息管理系统模板</title>
+    <link href="/common/css/StudentStyle.css" rel="stylesheet" type="text/css" />
+    <link href="/common/css/jbox.css" rel="stylesheet" type="text/css" />
+    <link href="/common/css/ks.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/modal/modal.css">
+    <link rel="stylesheet" href="/student/css/student.css">
+    <script src="/common/js/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <div class="banner">
+        <div class="bgh">
+            <div class="page">
+                <div id="logo">
+                    <a href="Index.aspx.html">
+                        <img src="/common/images/school_logo.png" alt="" width="110" height="70" />
+                    </a>
+                </div>
+                <div class="topxx">
+                    {{student.id}}学员：{{student.name}}，欢迎您！
+                    <a href="/students/stud/{{student.id}}">我的信息</a>
+                    <a href="/students/tips" id="tip">通知</a>
+                    <span id="notice">1</span>
+                    <a href="/exit">安全退出</a>
+                </div>
+                <div class="blog_nav">
+                    <ul>
+                        <li><a href="/students/stud/{{student.id}}">我的信息</a></li>
+                        <li><a href="/students/exportmyinfo/{{student.id}}" download="myinfo.xlsx" id="downInfo">打印资料</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <div class="box mtop">
+            <div class="leftbox">
+                <div class="l_nav2">
+                    <div class="ta1">
+                        <strong>个人中心</strong>
+                        <div class="leftbgbt">
+                        </div>
+                    </div>
+                    <div class="cdlist">
+                        <div>
+                            <a href="/students/stud/{{student.id}}">我的信息</a>
+                        </div>
+                        <div>
+                            <a href="javascript:;" id="repairePwd" data-id="{{student.id}}">修改密码</a>
+                        </div>
+                    </div>
+                    <div class="ta1">
+                        <strong>课表</strong><div class="leftbgbt2">
+                    </div>
+                    </div>
+                    <div class="cdlist">
+                        <div>
+                            <a href="/students/course">查看课表</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="rightbox">
+                <h2 class="mbx">我的信息 &gt; 个人资料 &nbsp;&nbsp;&nbsp;</h2>
+                <div class="cztable">
+                    <table width="100%" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td align="right" width="80">姓名：</td>
+                            <td>{{student.name}}&nbsp;</td>
+                            <td align="right" width="90">性别：</td>
+                            <td>{{student.sex}}&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="right">所在系：</td>
+                            <td>{{student.department}}&nbsp;</td>
+                            <td align="right">所在班级：</td>
+                            <td>{{student.classes}}&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="right">哪一届：</td>
+                            <td colspan="3">{{student.session_name}}届&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" align="left">联系方式（如联系方式有变动请及时修改，以便能及时联系到你。谢谢！）</td>
+                        </tr>
+                        <tr>
+                            <td align="right">手机号码：</td>
+                            <td>{{student.phone}}</td>
+                            <td align="right">第二联系号码：</td>
+                            <td>{{if(student.phone2)}}{{student.phone}}{{else}}无{{/if}}</td>
+                        </tr>
+                        <tr>
+                            <td align="right">QQ:</td>
+                            <td>{{student.qq}}</td>
+                            <td align="right">电子邮箱：</td>
+                            <td>{{student.email}}</td>
+                        </tr>
+                        <tr>
+                            <td align="right">联系地址：</td>
+                            <td colspan="4">{{student.address}}</td>
+                        </tr>
+                         <tr>
+                            <td colspan="4" align="left">关于自己的描述</td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" height="60">
+                                <p>
+                                    {{if(student.descriptions)}}
+                                        {{student.descriptions}}
+                                    {{else}}
+                                        此人什么也没留下....
+                                    {{/if}}
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="5" height="60" align="center">
+                                <a href="/students/{{student.id}}/modifyinfo" class="btn">修改个人资料</a>
+                            </td>
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+    <div class="modal">
+    </div>
+    <div class="pwd">
+        <div class="pwd_header">
+            <h1>修改密码</h1>
+            <span class="close">X</span>
+        </div>
+        <div class="pwd_body">
+            <p>
+                <label for="username">学号</label>
+                <input type="text" name="username" id="username" placeholder="password">
+            </p>
+            <p>
+                <label for="password">新密码</label>
+                <input type="password" name="password" id="password" placeholder="password">
+                <label class="new_report"></label>
+            </p>
+            <p>
+                <label for="password">确认密码</label>
+                <input type="password" name="confirmpassword" id="confirmpassword" placeholder="confirmpassword">
+                <label class="confirm_report"></label>
+            </p>
+        </div>
+        <div class="pwd_footer">
+            <button class="btn" id="reset">取消</button>
+            <button class="btn" id="repaire">修改</button>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            $("#password").blur(function(){
+               var pwd = $(this).val()
+                if( pwd.length == 0 || pwd.length < 5){
+                    $(".new_report").html("长度不够").addClass("error")
+                    return false
+                }else{
+                    $(".new_report").html("").removeClass("error")
+
+                }
+            })
+            $("#confirmpassword").blur(function(){
+                pwd = $(this).val()
+                if( pwd.length == 0 || pwd.length < 5){
+                    $(".confirm_report").html("长度不够").addClass("error")
+                    return false
+                }else{
+                    $(".confirm_report").html("").removeClass("error")
+                }
+            })
+
+            $("#repairePwd").on("click",function(){
+                $(".modal").show()
+                $($(".pwd")[0]).animate({
+                    top:"100px",
+                },500)
+                var id = parseInt($("#repairePwd").attr("data-id"))
+                $("#username").val(id).addClass("disabled").attr("disabled","true")
+            })
+
+            function resetClick() {
+                $(".modal").hide()
+                $($(".pwd")[0]).animate({
+                    top:"-400px",
+                },500)
+                $(".confirm_report").html("").prev("input[type='password']").val("").removeClass("error")
+                $(".new_report").html("").prev("input[type='password']").val("").removeClass("error")
+            }
+
+            function  closeClick() {
+                $(".modal").hide()
+                $($(".pwd")[0]).animate({
+                    top:"-400px",
+                },500)
+                $(".confirm_report").html("").prev("input[type='password']").val("").removeClass("error")
+                $(".new_report").html("").prev("input[type='password']").val("").removeClass("error")
+            }
+
+            function modalClick() {
+                $(".modal").hide()
+                $($(".pwd")[0]).animate({
+                    top:"-400px",
+                },500)
+                $(".confirm_report").html("").prev("input[type='password']").val("").removeClass("error")
+                $(".new_report").html("").prev("input[type='password']").val("").removeClass("error")
+            }
+            $("#reset").on("click",resetClick)
+            $(".close").on("click",closeClick)
+            $(".modal").on("click",modalClick)
+
+            $("#repaire").on("click",function(){
+
+                var new_p = $("#password").val()
+                var new_c = $("#confirmpassword").val()
+                if(new_p !== new_c){
+                    $(".new_report").html("两次输入密码不同").addClass("error")
+                    $(".confirm_report").html("两次输入密码不同").addClass("error")
+                    return
+                }
+                $(this).addClass("notDo")
+                $("#reset").off("click")
+                $(".close").off("click")
+                $(".modal").off("click")
+                $(".new_report").html("").removeClass("error")
+                $(".confirm_report").html("").removeClass("error")
+                var id = parseInt($("#repairePwd").attr("data-id"))
+                $.ajax({
+                    url:"/students/dorepaire",
+                    type:"post",
+                    data:{id:id,newpassword:new_p,confirmpassword:new_c},
+                    dataType:"json",
+                    processData:true,
+                    traditional:true,
+                    success:function(res){
+                        if(res.status == 200){
+                            $("#repaire").removeClass("notDo")
+                            alert("修改成功")
+                            $("#reset").on("click",resetClick)
+                            $(".close").on("click",closeClick)
+                            $(".modal").on("click",modalClick)
+                            modalClick()
+                        }
+                    },
+                    error:function(err){
+                        if(err){
+                            $("#repaire").removeClass("notDo")
+                            alert("修改失败")
+                            $("#reset").on("click",resetClick)
+                            $(".close").on("click",closeClick)
+                            $(".modal").on("click",modalClick)
+                        }
+                    }
+                })
+            })
+
+            function getTip(){
+                $.ajax({
+                    url:'/students/getTip',
+                    type:'get',
+                    success:function(res){
+                        if(res.status === 200){
+                            $("#notice").show()
+                        }else{
+                            $("#notice").hide()
+                        }
+                    },
+                    error:function(err){
+                        console.log(err)
+                        $("#notice").hide()
+                    }
+                })
+            }
+           setInterval(function(){
+               getTip()
+           },50000)
+
+
+            // $("#downInfo").on("click",function(event){
+            //     window.location = "/students/exportmyinfo/{{student.id}}";
+            //     event.preventDefault()
+            // })
+            // // $("#tip").on("click",getTip)
+
+        })
+    </script>
+</body>
+</html>

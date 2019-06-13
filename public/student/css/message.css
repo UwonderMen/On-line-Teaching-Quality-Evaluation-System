@@ -1,0 +1,48 @@
+.message_box{
+    width: 100%;
+    padding: 10px 20px;
+}
+.message_header{
+    width: 100%;
+    background: #e3eaec;
+    height: 40px;
+    border: 1px solid #dee4e7;
+    position: relative;
+}
+.message_header span{
+    position: absolute;
+    top:10px;
+    left: 40px;
+    background: #f8f8f8;
+    font-weight: bold;
+    font-size: 14px;
+    color: #2E2E2E;
+    padding: 5px 10px;
+}
+.message_body{
+    padding: 20px;
+}
+.message_body li{
+    border-bottom: 1px dashed #d8d8d8;
+    border-left: 1px dashed #d8d8d8;
+    margin:10px 0px;
+    padding: 5px 10px;
+}
+.studentSayConent{
+    font-size: 14px;
+    margin: 10px 20px;
+}
+.studentSayTime{
+    opacity: 0.7;
+    font-size: 12px;
+    margin-left: 20px;
+}
+.nomessage{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+.identification{
+    font-size: 12px;
+    font-weight: 400;
+}

@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>学生信息管理系统模板</title>
+    <link href="/common/css/StudentStyle.css" rel="stylesheet" type="text/css" />
+    <link href="/common/css/jbox.css" rel="stylesheet" type="text/css" />
+    <link href="/common/css/ks.css" rel="stylesheet" type="text/css" />
+    <link href="/manager/css/lookCourse.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="/modal/modal.css">
+    <script src="/common/js/jquery-2.1.1.min.js"></script>
+</head>
+<body>
+    <div class="banner">
+        <div class="bgh">
+            <div class="page">
+                <div id="logo">
+                    <a href="#">
+                        <img src="/common/images/school_logo.png" alt="" width="110" height="70" />
+                    </a>
+                </div>
+                <div class="topxx">
+                    {{manager.id}}管理员：{{manager.name}}，欢迎您！
+                    <a href="/managers/man/{{manager.id}}">我的信息</a>
+                    <a href="User/managerInfor/systemMsge.aspx.html">通知</a>
+                    <a href="/exit">安全退出</a>
+                </div>
+                <div class="blog_nav">
+                    <ul>
+                         <li><a href="/managers/man/{{manager.id}}">我的信息</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="page">
+        <div class="box mtop">
+            <div class="leftbox">
+                <div class="l_nav2">
+                    <div class="ta1">
+                        <strong>管理员个人中心</strong>
+                        <div class="leftbgbt">
+                        </div>
+                    </div>
+                    <div class="cdlist">
+                        <div>
+                            <a href="/managers/man/{{manager.id}}">我的信息</a>
+                        </div>
+                        <div>
+                            <a href="javascript:;" id="repairePwd" data-id="{{manager.id}}">修改密码</a>
+                        </div>
+                    </div>
+                    <div class="ta1">
+                        <strong>课程管理</strong><div class="leftbgbt2">
+                    </div>
+                    </div>
+                    <div class="cdlist">
+                        <div>
+                            <a href="/managers/lookcourse">查看课程</a>
+                        </div>
+                    </div>
+                    <div class="ta1">
+                        <strong>教师管理</strong><div class="leftbgbt2">
+                    </div>
+                    </div>
+                    <div class="cdlist">
+                        <div>
+                            <a href="/managers/findTeacher">查看教师</a>
+                        </div>
+                    </div>
+                    <div class="ta1">
+                        <strong>学生管理</strong><div class="leftbgbt2">
+                    </div>
+                    </div>
+                    <div class="cdlist">
+                        <div>
+                            <a href="/managers/findStudent">查看学生</a>
+                        </div>
+                    </div>
+                    <div class="ta1">
+                        <strong>教学质量评价管理</strong><div class="leftbgbt2">
+                    </div>
+                    </div>
+                    <div class="cdlist">
+                        <div>
+                            <a href="/managers/publish">发布教学质量评价</a>
+                        </div>
+                        <div>
+                            <a href="/managers/addTeachEvaluation">增加教学质量评价</a>
+                        </div>
+                        <div>
+                            <a href="/managers/repareEvaluation">修改教学质量评价内容</a>
+                        </div>
+                    </div>
+                    <div class="ta1">
+                        <strong>教师得分</strong><div class="leftbgbt2">
+                    </div>
+                    </div>
+                    <div class="cdlist">
+                        <div>
+                            <a href="/managers/getallevaluato">教师得分查询</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+              <div class="rightbox">
+                <h2 class="mbx">我的信息 &gt; 查看课程 &nbsp;&nbsp;&nbsp;</h2>
+                  <div class="filter_box">
+                      <span id="filter">过滤条件</span>
+                      <select id="departement" name="departement" value="">
+                          <option>----系名----</option>
+                          {{each manager.department}}
+                            <option value="{{$value.id}}">{{$value.name}}</option>
+                          {{/each}}
+                      </select>
+                      <select name="course" id="course" value="">
+                          <option value="">---课程名---</option>
+                      </select>
+                  </div>
+                <div class="cztable">
+                    <table width="100%" cellpadding="0" cellspacing="0" id="information">
+                        <tr>
+
+                            <th align="center" width="80">课程名</th>
+                            <th align="center" width="80">所属系</th>
+                        </tr>
+                        {{each manager.departmentandcourse}}
+                            <tr>
+                                <td align="center" width="80">{{$value.course}}</td>
+                                <td align="center" width="80">{{$value.department}}</td>
+                            </tr>
+                        {{/each}}
+                    </table>
+                </div>
+            </div>
+    <div class="modal">
+    </div>
+    <div class="pwd">
+        <div class="pwd_header">
+            <h1>修改密码</h1>
+            <span class="close">X</span>
+        </div>
+        <div class="pwd_body">
+            <p>
+                <label for="username">工号</label>
+                <input type="text" name="username" id="username" placeholder="password">
+            </p>
+            <p>
+                <label for="password">新密码</label>
+                <input type="password" name="password" id="password" placeholder="password">
+                <label class="new_report"></label>
+            </p>
+            <p>
+                <label for="password">确认密码</label>
+                <input type="password" name="confirmpassword" id="confirmpassword" placeholder="confirmpassword">
+                <label class="confirm_report"></label>
+            </p>
+        </div>
+        <div class="pwd_footer">
+            <button class="btn" id="reset">取消</button>
+            <button class="btn" id="repaire">修改</button>
+        </div>
+    </div>
+    <script>
+        $(function(){
+            $("#password").blur(function(){
+                var pwd = $(this).val()
+                if( pwd.length == 0 || pwd.length < 5){
+                    $(".new_report").html("长度不够").addClass("error")
+                    return false
+                }else{
+                    $(".new_report").html("").removeClass("error")
+
+                }
+            })
+            $("#confirmpassword").blur(function(){
+                pwd = $(this).val()
+                if( pwd.length == 0 || pwd.length < 5){
+                    $(".confirm_report").html("长度不够").addClass("error")
+                    return false
+                }else{
+                    $(".confirm_report").html("").removeClass("error")
+                }
+            })
+
+            $("#repairePwd").on("click",function(){
+                $(".modal").show()
+                $($(".pwd")[0]).animate({
+                    top:"100px",
+                },500)
+                var id = parseInt($("#repairePwd").attr("data-id"))
+                $("#username").val(id).addClass("disabled").attr("disabled","true")
+            })
+
+            function resetClick() {
+                $(".modal").hide()
+                $($(".pwd")[0]).animate({
+                    top:"-400px",
+                },500)
+                $(".confirm_report").html("").prev("input[type='password']").val("").removeClass("error")
+                $(".new_report").html("").prev("input[type='password']").val("").removeClass("error")
+            }
+
+            function  closeClick() {
+                $(".modal").hide()
+                $($(".pwd")[0]).animate({
+                    top:"-400px",
+                },500)
+                $(".confirm_report").html("").prev("input[type='password']").val("").removeClass("error")
+                $(".new_report").html("").prev("input[type='password']").val("").removeClass("error")
+            }
+
+            function modalClick() {
+                $(".modal").hide()
+                $($(".pwd")[0]).animate({
+                    top:"-400px",
+                },500)
+                $(".confirm_report").html("").prev("input[type='password']").val("").removeClass("error")
+                $(".new_report").html("").prev("input[type='password']").val("").removeClass("error")
+            }
+            $("#reset").on("click",resetClick)
+            $(".close").on("click",closeClick)
+            $(".modal").on("click",modalClick)
+
+            function dorepaire(){
+                var new_p = $("#password").val()
+                var new_c = $("#confirmpassword").val()
+                if(new_p !== new_c){
+                    $(".new_report").html("两次输入密码不同").addClass("error")
+                    $(".confirm_report").html("两次输入密码不同").addClass("error")
+                    return
+                }
+                $("#repaire").off("click").addClass("notDo")
+                $("#reset").addClass("notDo").off("click")
+                $(".close").off("click")
+                $(".modal").off("click")
+                $(".new_report").html("").removeClass("error")
+                $(".confirm_report").html("").removeClass("error")
+                var id = parseInt($("#repairePwd").attr("data-id"))
+                $.ajax({
+                    url:"/teachers/dorepaire",
+                    type:"post",
+                    data:{id:id,newpassword:new_p,confirmpassword:new_c},
+                    dataType:"json",
+                    processData:true,
+                    traditional:true,
+                    success:function(res){
+                        console.log(res)
+                        if(res.status == 200){
+                            setTimeout(function(){
+                                alert("修改成功")
+                                $("#repaire").removeClass("notDo").on("click",dorepaire)
+                                $("#reset").on("click",resetClick).removeClass("notDo")
+                                $(".close").on("click",closeClick)
+                                $(".modal").on("click",modalClick)
+                                modalClick()
+                            },2000)
+                        }
+                    },
+                    error:function(err){
+                        if(err){
+                            alert("修改失败")
+                            $("#repaire").removeClass("notDo").on("click",dorepaire)
+                            $("#reset").on("click",resetClick).removeClass("notDo")
+                            $(".close").on("click",closeClick)
+                            $(".modal").on("click",modalClick)
+                        }
+                    }
+                })
+            }
+            $("#repaire").on("click",dorepaire)
+
+
+
+
+
+            $("#departement").change(function(){
+              var did = parseInt($(this).val())
+                $.ajax({
+                    url:"/managers/getCourse",
+                    type:"post",
+                    data:{did},
+                    dataType:"json",
+                    accepts:"application/json",
+                    traditional:false,
+                    processData:true,
+                    success:function(res){
+                       if(res.status === 200){
+                           var  html =  `
+                                        <option value="">---课程名---</option>
+                                    `
+                           for(var i=0;i<res.data.length;i++){
+                               html += `
+                                        <option value="${res.data[i].id}">${res.data[i].name}</option>
+                                    `
+                           }
+                            $("#course").html(html)
+                       }
+                    },
+                    error:function(err){
+                        console.log(err)
+                    }
+                })
+            })
+
+            $("#course").change(function(){
+
+                var cid = $(this).val()
+                var did = $("#departement").val()
+                $.ajax({
+                    url:"/managers/getDepartmentCourse",
+                    type:"post",
+                    data:{cid,did},
+                    dataType:"json",
+                    accepts:"application/json",
+                    traditional:false,
+                    processData:true,
+                    success:function(res){
+                        if(res.status === 200){
+                            var html = `
+                                 <tr>
+                                    <th align="center" width="80">课程名</th>
+                                    <th align="center" width="80">所属系</th>
+                                </tr>
+                            `
+                            for(var i=0; i < res.data.length;i++){
+                                html += `
+                                     <tr>
+                                        <td align="center" width="80">${res.data[i].course}</td>
+                                        <td align="center" width="80">${res.data[i].department}</td>
+                                    </tr>
+                                `
+                            }
+                            $("#information").html("").html(html)
+                        }
+                    },
+                    error:function(err){
+                        console.log(err)
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+</html>

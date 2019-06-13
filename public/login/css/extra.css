@@ -1,0 +1,39 @@
+  @charset "utf-8";
+/* CSS Document */
+  .model{
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        background: url(/login/images/load.gif)  no-repeat center;
+        background-color: black;
+        opacity: 0.5;
+        top: 0;
+        left: 0;
+      }
+      .report{
+        width: 380px;
+        height: 40px;
+        position: absolute;
+        left: 50%;
+        margin-left: -190px;
+        background: #eae6d7;
+        top: 66px;
+        display: none
+      }
+      .error{
+        border: 1px solid red !important;
+      }
+      .report img{
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 50%;
+        left: 20px;
+        margin-top: -15px;
+      }
+       .report span{
+          position: absolute;
+          line-height: 40px;
+          font-size: 16px;
+          left: 60px;
+       }

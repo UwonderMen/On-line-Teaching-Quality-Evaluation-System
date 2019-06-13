@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>login</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" type="text/css" href="/login/css/extra.css">
+    <link href="/login/css/style_log.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="/login/css/style.css">
+    <script src="/login/js/jquery-2.1.1.min.js"></script>
+  </head>
+  <body>
+    <div class="report">
+      <img src="/login/images/err.png" alt="">
+      <span></span>
+    </div>
+    <div class="login_m">
+      <div class="login_boder">
+        <div class="login_padding" id="login_model">
+          <h2>Username</h2>
+            <label>
+              <input type="text" id="username" class="txt_input txt_input2" name="username" placeholder="username">
+            </label>
+            <h2>Password</h2>
+              <label>
+                <input type="password" id="password" class="txt_input"  name="password" placeholder="password">
+              </label>
+              <div class="rem_sub">
+                <div class="rem_sub_l">
+                    <input type="radio" name="type" value=1 style="margin-left: 10px;">
+                    <span style="margin-right: 20px">学生</span>
+                    <input type="radio" name="type"" value=2>
+                    <span style="margin-right: 20px">教师</span>
+                    <input type="radio" name="type" value=3>
+                    <span>管理员</span>
+                 </div>
+                <input type="button" class="sub_button" id="button" value="登录" style="opacity: 0.7">
+              </div>
+          </div>
+      </div>
+    </div>
+    <div class="" id="flag"></div>
+    <script src="/login/js/config.js"></script>
+    <script src="/login/js/util.js"></script>
+    <script src="/login/js/schedule.js"></script>
+  </body>
+</html>
