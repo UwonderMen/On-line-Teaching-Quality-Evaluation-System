@@ -55,13 +55,13 @@ router.use('/error',error)
 router.use('/exit',exit)
 
 //教学质量评价模块
-router.use('/teachevaluation',teachEvaluation)
+router.use('/teachevaluation',teachEvaluation);
 
 
-app.use(router.routes()).use(router.allowedMethods())
+app.use(router.routes()).use(router.allowedMethods());
 
 //-----服务端监听----//
 app.listen("8080",function(){
 	console.log("web服务开启成功，监听在127.0.0.1:8080......")
-})
+});
 
